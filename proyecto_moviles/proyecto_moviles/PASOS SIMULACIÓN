@@ -1,0 +1,12 @@
+PASOS PARA LA ABRIR LA SIMULACIÓN Y ACTIVAR LA NAVEGACIÓN
+
+1. Desde la carpeta de "world" o donde esté el mapa para simular:
+ros2 launch mvsim launch_world.launch.py world_file:=prueba.world.xml do_fake_localization:=false use_rviz:=false
+
+2. Desde otra terminal, pero en la misma carpeta que antes:
+ros2 launch nav2_bringup bringup_launch.py map:=./mapa_lab_simulado.yaml params_file:=./nav2.yaml use_sim_time:=false
+
+3. En otra terminal distina abrir rviz2, añadir topic /map y cambiar a Transistent Local, añadir el topic PoseWithCovariance y cambiarlo también a Transistent Local,
+  añadir el 2D Pose Estimate con la posición del robot inicial. Opcional: añadir topic /path para ver la ruta.
+
+Ahora cuando se ejecute el nodo de navegación debería verse en RViz perfectamente.
