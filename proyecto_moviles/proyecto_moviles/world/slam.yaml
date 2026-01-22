@@ -1,9 +1,0 @@
-slam_toolbox:
-  ros__parameters:
-    use_sim_time: false     # Si el simulador publica /clock, aquí se pone true (p.ej. Gazebo). mvsim no lo hace, así que false
-    odom_frame: odom
-    base_frame: base_link
-    map_frame: map
-    scan_topic: /laser1     # El laser2d del mundo "demo_turtlebot_world.world.xml" publica en el topic /laser1
-    mode: mapping
-
