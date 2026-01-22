@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<mvsim_world version="1.0">
+
+  <simul_timestep>0</simul_timestep>
+
+  <gui>
+    <ortho>false</ortho>
+    <show_forces>false</show_forces>
+    <cam_distance>9</cam_distance>
+    <cam_azimuth>180</cam_azimuth>
+    <cam_elevation>70</cam_elevation>
+    <fov_deg>60</fov_deg>
+    <refresh_fps>60</refresh_fps>
+  </gui>
+
+  <element class="horizontal_plane">
+    <x_min>-20</x_min>
+    <y_min>-20</y_min>
+    <x_max>20</x_max>
+    <y_max>20</y_max>
+    <z>0.0</z>
+  </element>
+  <element class="ground_grid">
+    <interval>1.0</interval>
+  </element>
+
+  <include file="$(ros2 pkg prefix mvsim)/share/mvsim/definitions/turtlebot3_burger.vehicle.xml"
+           default_sensors="true"
+           lidar2d_raytrace="true"/>
+  <vehicle name="turtlebot" class="turtlebot3_burger">
+    <init_pose>0 0 0</init_pose>
+  </vehicle>
+
+  <walls>
+    <color>#808080</color>
+    <wallThickness>0.25</wallThickness>
+    <wallHeight>2</wallHeight>
+    <shape>
+      <pt>-2.5 -3.5</pt> <pt>2.5 -3.5</pt>
+      <pt>2.5 -3.5</pt> <pt>2.5 3.5</pt>
+      <pt>2.5 3.5</pt> <pt>-2.5 3.5</pt>
+      <pt>-2.5 3.5</pt> <pt>-2.5 -3.5</pt>
+      <pt>-0.9 3.5</pt> <pt>-0.9 1.5</pt>
+    </shape>
+  </walls>
+
+  <block:class name="lab_table">
+    <static>true</static>
+    <color>#000000</color>
+    <zmin>0.0</zmin>
+    <zmax>0.4</zmax>
+    <shape>
+      <pt>-0.3 -0.3</pt>
+      <pt>-0.3 0.3</pt>
+      <pt>0.3 0.3</pt>
+      <pt>0.3 -0.3</pt>
+    </shape>
+  </block:class>
+
+  <block:class name="chair_N">
+    <static>true</static>
+    <visual>
+      <model_uri>models/DiningChair/diningchair.dae</model_uri>
+      <model_scale>0.5</model_scale>
+      <model_pitch>180</model_pitch> <model_yaw>0</model_yaw> <model_roll>-90</model_roll>
+    </visual>
+    <zmin>0.0</zmin> <zmax>0.9</zmax>
+    <shape>
+        <pt>-0.15 -0.15</pt><pt>0.15 -0.15</pt><pt>0.15 0.15</pt><pt>-0.15 0.15</pt>
+    </shape>
+  </block:class>
+
+  <block:class name="chair_S">
+    <static>true</static>
+    <visual>
+      <model_uri>models/DiningChair/diningchair.dae</model_uri>
+      <model_scale>0.5</model_scale>
+      <model_pitch>180</model_pitch> <model_yaw>180</model_yaw> <model_roll>-90</model_roll>
+    </visual>
+    <zmin>0.0</zmin> <zmax>0.9</zmax>
+    <shape>
+        <pt>-0.15 -0.15</pt><pt>0.15 -0.15</pt><pt>0.15 0.15</pt><pt>-0.15 0.15</pt>
+    </shape>
+  </block:class>
+
+  <block:class name="chair_E">
+    <static>true</static>
+    <visual>
+      <model_uri>models/DiningChair/diningchair.dae</model_uri>
+      <model_scale>0.5</model_scale>
+      <model_pitch>180</model_pitch> <model_yaw>-90</model_yaw> <model_roll>-90</model_roll>
+    </visual>
+    <zmin>0.0</zmin> <zmax>0.9</zmax>
+    <shape>
+        <pt>-0.15 -0.15</pt><pt>0.15 -0.15</pt><pt>0.15 0.15</pt><pt>-0.15 0.15</pt>
+    </shape>
+  </block:class>
+
+  <block:class name="chair_W">
+    <static>true</static>
+    <visual>
+      <model_uri>models/DiningChair/diningchair.dae</model_uri>
+      <model_scale>0.5</model_scale>
+      <model_pitch>180</model_pitch> <model_yaw>90</model_yaw> <model_roll>-90</model_roll>
+    </visual>
+    <zmin>0.0</zmin> <zmax>0.9</zmax>
+    <shape>
+        <pt>-0.15 -0.15</pt><pt>0.15 -0.15</pt><pt>0.15 0.15</pt><pt>-0.15 0.15</pt>
+    </shape>
+  </block:class>
+
+  <block class="lab_table"><init_pose>0.8 2.0 0</init_pose></block>
+  <block class="chair_S"><init_pose>0.8 2.4 0.25 0 0 0</init_pose></block> 
+  <block class="chair_N"><init_pose>0.8 1.6 0.25 0 0 0</init_pose></block> 
+  <block class="chair_E"><init_pose>0.4 2.0 0.25 0 0 0</init_pose></block> 
+  <block class="chair_W"><init_pose>1.2 2.0 0.25 0 0 0</init_pose></block> 
+
+  <block class="lab_table"><init_pose>-1.0 0.3 0</init_pose></block>
+  <block class="chair_S"><init_pose>-1.0 0.7 0.25 0 0 0</init_pose></block>
+  <block class="chair_N"><init_pose>-1.0 -0.1 0.25 0 0 0</init_pose></block>
+  <block class="chair_E"><init_pose>-1.4 0.3 0.25 0 0 0</init_pose></block>
+  <block class="chair_W"><init_pose>-0.6 0.3 0.25 0 0 0</init_pose></block>
+
+  <block class="lab_table"><init_pose>1.0 -0.15 0</init_pose></block>
+  <block class="chair_S"><init_pose>1.0 0.25 0.25 0 0 0</init_pose></block>
+  <block class="chair_N"><init_pose>1.0 -0.55 0.25 0 0 0</init_pose></block>
+  <block class="chair_E"><init_pose>0.6 -0.15 0.25 0 0 0</init_pose></block>
+  <block class="chair_W"><init_pose>1.4 -0.15 0.25 0 0 0</init_pose></block>
+
+  <block class="lab_table"><init_pose>-1.0 -1.8 0</init_pose></block>
+  <block class="chair_S"><init_pose>-1.0 -1.4 0.25 0 0 0</init_pose></block>
+  <block class="chair_N"><init_pose>-1.0 -2.2 0.25 0 0 0</init_pose></block>
+  <block class="chair_E"><init_pose>-1.4 -1.8 0.25 0 0 0</init_pose></block>
+  <block class="chair_W"><init_pose>-0.6 -1.8 0.25 0 0 0</init_pose></block>
+
+  <block class="lab_table"><init_pose>1.2 -2.2 0</init_pose></block>
+  <block class="chair_S"><init_pose>1.2 -1.8 0.25 0 0 0</init_pose></block>
+  <block class="chair_N"><init_pose>1.2 -2.6 0.25 0 0 0</init_pose></block>
+  <block class="chair_E"><init_pose>0.8 -2.2 0.25 0 0 0</init_pose></block>
+  <block class="chair_W"><init_pose>1.6 -2.2 0.25 0 0 0</init_pose></block>
+
+</mvsim_world>
