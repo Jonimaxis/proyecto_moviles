@@ -12,10 +12,10 @@ class ArucoDetector(Node):
         super().__init__('aruco_detector')
         self.bridge = CvBridge()
         
-        # FILTRO: Solo haremos caso a estos IDs (Mesas 1 a 5)
+        #(Mesas 1 a 5)
         self.target_ids = [0, 1, 2, 3, 4]
         
-        # Publicamos la lista de IDs detectados (Ej: [0] o [1, 2])
+        # Publicamos IDs detectados
         self.publisher_ids = self.create_publisher(Int32MultiArray, '/detected_aruco_ids', 10)
         
         # --- SUSCRIPTOR ---
