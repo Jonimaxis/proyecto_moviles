@@ -53,8 +53,17 @@ NAVEGACIÓN
 -USO CON TURTLEBOT REAL
 
 1. Configuración previa
-   Seguir los pasos indicados en el siguiente enlace:
-     https://moodle2025-26.ua.es/moodle/mod/page/view.php?id=104664
+   terminal1: `export ROS_DOMAIN_ID=1
+ssh turtlebot@192.168.1.5
+ros2 launch kobuki kobuki.launch.py`
+
+terminal 2: `export ROS_DOMAIN_ID=1
+ssh turtlebot@192.168.1.5
+ros2 launch urg_node2 urg_node2.launch.py scan_topic_name:=scan_filtered`
+
+terminal 3: `export ROS_DOMAIN_ID=1
+ssh turtlebot@192.168.1.5
+ros2 run tf2_ros static_transform_publisher 0 0 0 1 0 0 0 base_link laser`
 
 2. Lanzar la navegación
    Desde la carpeta "world":
@@ -79,7 +88,7 @@ Si no se está ejecutando la navegación completa, estos nodos proveen el mapa y
 
 * **Terminal 1 (Map Server):**
     
-    ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=/home/administrador/aruco_ws/src/map2gazebo/mapa_editado.yaml
+    ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=ruta_de_tu_mapa.yaml
 
 * **Terminal 2 (Lifecycle Manager):**
     
