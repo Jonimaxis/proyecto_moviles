@@ -69,17 +69,64 @@ NAVEGACIÓN
      - Añadir el tópico MarkerArray para visualizar el estado de las mesas (es necesario haber iniciado previamente el nodo de "landmark_publisher").
      - Opcionalmente, añadir el tópico /path para visualizar la ruta que sigue el turtlebot.
 
+### VISIÓN
 
+Esta sección detalla cómo lanzar los nodos individualmente de la parte de detección y visión de ocupación de sillas e id de marcadores aruco.
+**Nota:** En cada terminal nueva, cargar las dependencias con: `source install/setup.bash`
 
+**1. Infraestructura de Mapa (Contexto)**
+Si no se está ejecutando la navegación completa, estos nodos proveen el mapa y las transformaciones necesarias.
 
-
-
-
-
-
-
-
-
-
-
+* **Terminal 1 (Map Server):**
     
+    ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=/home/administrador/aruco_ws/src/map2gazebo/mapa_editado.yaml
+
+* **Terminal 2 (Lifecycle Manager):**
+    
+    ros2 run nav2_lifecycle_manager lifecycle_manager --ros-args -p autostart:=true -p node_names:=['map_server']
+
+* **Terminal 3 (TF Estático):**
+    
+    ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 map odom
+
+**2. Drivers y Detectores**
+
+* **Terminal 4 (Driver de Cámara):**
+Elegir `video_controller` (video grabado) o `driver_ip` (cámara real del móvil mediante app IPWebcam).
+    
+    ros2 run aruco_detector driver_ip
+
+* **Terminal 5 (Detector ArUco):**
+    
+    ros2 run aruco_detector aruco_detector_node
+
+**3. Detección de Ocupación de las sillas(YOLOv8)**
+Requiere activar el entorno virtual específico antes de lanzar el nodo con la librería ultralytics instalada.
+
+* **Terminal 6:**
+    
+    source ~/ros_yolo_env/bin/activate
+    source ~/aruco_detector/install/setup.bash
+    python3 ~/aruco_detector/src/chair_detector/chair_detector/chair_detector_node.py
+
+**4. Fusión y Visualización**
+
+* **Terminal 7 (Fusión de Tópicos):**
+    
+    ros2 run aruco_detector fusion_topics
+
+* **Terminal 8 (Visualizador de Mesas):**
+    
+    ros2 run aruco_detector landmark_publisher 
+
+**5. Monitorización en RViz**
+
+* **Terminal 9:**
+    rviz2
+   *Configuración RViz:* Añadir **MarkerArray** con el topic chair_markers para ver las mesas y los cambios según su ocupación.
+
+* **Terminal 10 (Solo si se usa video grabado):**
+Para iniciar la reproducción del video:
+    ros2 topic pub --once /control_video std_msgs/msg/String "data: 'play'"
+Para pausar el video:
+    ros2 topic pub --once /control_video std_msgs/msg/String "data: 'pause'"
