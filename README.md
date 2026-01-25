@@ -151,8 +151,8 @@ Requiere activar el entorno virtual específico antes de lanzar el nodo con la l
   
 Para iniciar la reproducción del video:
 
-    ros2 topic pub --once /control_video std_msgs/msg/String "data: 'play'"
+    ros2 topic pub --once /video_controller std_msgs/msg/String "data: 'play'"
     
 Para pausar el video:
 
-    ros2 topic pub --once /control_video std_msgs/msg/String "data: 'pause'"
+    ros2 topic pub --once /video_controller std_msgs/msg/String "data: 'pause'"
