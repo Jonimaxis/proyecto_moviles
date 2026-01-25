@@ -31,17 +31,20 @@ NAVEGACIÓN
 -USO DEL ENTORNO SIMULADO
 
 1. Lanzar el mundo de simulación
+   
    Desde la carpeta "world" (o donde se encuentre el mapa a simular):
 
      ros2 launch mvsim launch_world.launch.py world_file:=lab_sim.world.xml do_fake_localization:=false use_rviz:=false
 
-2. Lanzar la navegación
+3. Lanzar la navegación
+   
    En otra terminal, situada en la misma carpeta que el paso anterior:
 
      ros2 launch nav2_bringup bringup_launch.py map:=./mapa_lab_simulado.yaml params_file:=./nav2.yaml use_sim_time:=false
 
-3. Configuración de RViz
-   En una tercera terminal, abrir rviz2 y realizar las siguientes acciones:
+4. Configuración de RViz
+   
+   En una tercera terminal, abrir Rviz2 y realizar las siguientes acciones:
      - Añadir el tópico /map y cambiar su Durability Policy a "Transient Local".
      - Añadir el tópico PoseWithCovariance y configurarlo también como "Transient Local".
      - Usar la herramienta 2D Pose Estimate para establecer la posición inicial del robot.
