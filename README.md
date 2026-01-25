@@ -53,17 +53,20 @@ NAVEGACIÓN
 -USO CON TURTLEBOT REAL
 
 1. Configuración previa
-   terminal1: `export ROS_DOMAIN_ID=1
-ssh turtlebot@192.168.1.5
-ros2 launch kobuki kobuki.launch.py`
+   * **Terminal 1:**
+   `export ROS_DOMAIN_ID=nº turtlebot`
+   `ssh turtlebot@192.168.1.x`
+   `ros2 launch kobuki kobuki.launch.py`
 
-terminal 2: `export ROS_DOMAIN_ID=1
-ssh turtlebot@192.168.1.5
-ros2 launch urg_node2 urg_node2.launch.py scan_topic_name:=scan_filtered`
+   * **Terminal 2:**
+   `export ROS_DOMAIN_ID=nº turtlebot`
+   `ssh turtlebot@192.168.1.x`
+    `ros2 launch urg_node2 urg_node2.launch.py scan_topic_name:=scan_filtered`
 
-terminal 3: `export ROS_DOMAIN_ID=1
-ssh turtlebot@192.168.1.5
-ros2 run tf2_ros static_transform_publisher 0 0 0 1 0 0 0 base_link laser`
+   * **Terminal 3:**
+   `export ROS_DOMAIN_ID=nº turtlebot`
+   `ssh turtlebot@192.168.1.x`
+   `ros2 run tf2_ros static_transform_publisher 0 0 0 1 0 0 0 base_link laser`
 
 2. Lanzar la navegación
    Desde la carpeta "world":
