@@ -72,11 +72,13 @@ NAVEGACIÓN
    `ros2 run tf2_ros static_transform_publisher 0 0 0 1 0 0 0 base_link laser`
 
 2. Lanzar la navegación
+   
    Desde la carpeta "world":
 
      ros2 launch nav2_bringup bringup_launch.py map:=./mapa_editado.yaml params_file:=./nav2.yaml use_sim_time:=false
 
-3. Configuración de RViz
+4. Configuración de RViz
+   
    En otra terminal, abrir rviz2 y:
      - Añadir el tópico /map y cambiar su Durability Policy a "Transient Local".
      - Añadir el tópico PoseWithCovariance y configurarlo como "Transient Local".
