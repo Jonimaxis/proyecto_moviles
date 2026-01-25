@@ -118,7 +118,9 @@ Requiere activar el entorno virtual específico antes de lanzar el nodo con la l
 * **Terminal 6:**
     
     source ~/ros_yolo_env/bin/activate
+  
     source ~/aruco_detector/install/setup.bash
+  
     python3 ~/aruco_detector/src/chair_detector/chair_detector/chair_detector_node.py
 
 **4. Fusión y Visualización**
@@ -134,11 +136,18 @@ Requiere activar el entorno virtual específico antes de lanzar el nodo con la l
 **5. Monitorización en RViz**
 
 * **Terminal 9:**
+  
     rviz2
-   *Configuración RViz:* Añadir **MarkerArray** con el topic chair_markers para ver las mesas y los cambios según su ocupación.
+  
+   *Configuración RViz:*
+     Añadir **MarkerArray** con el topic chair_markers para ver las mesas y los cambios según su ocupación.
 
 * **Terminal 10 (Solo si se usa video grabado):**
+  
 Para iniciar la reproducción del video:
+
     ros2 topic pub --once /control_video std_msgs/msg/String "data: 'play'"
+    
 Para pausar el video:
+
     ros2 topic pub --once /control_video std_msgs/msg/String "data: 'pause'"
